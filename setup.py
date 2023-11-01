@@ -50,7 +50,15 @@ def extract_questions(fobj: io.TextIOWrapper)->list:
             des = "\n".join(chunks[1:-2])
         else:
             idx = 1
-            while idx < len(chunks) and "Possible Answer" not in chunks[idx]:
+            while idx < len(chunks):
+                idy = 0
+                found = False
+                while idy < len(chunks[idx]):
+                    if idy == "Possible Answer":
+                        found = True
+                        break
+                if not found:
+                    break
                 idx += 1
             
             des = "\n".join(chunks[1:idx])

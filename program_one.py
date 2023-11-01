@@ -60,7 +60,7 @@ def main(args):
     path = args[1]
     students_path = path + "/students.csv"
     question_path = path + "/questions.txt"
-    if os.path.exists(students_path) == True and os.path.exists(question_path) == True:
+    if os.path.exists(students_path) and os.path.exists(question_path):
         try:
             path, duration, shuffle = parse_cmd_args(args)
             exam_obj = exam.Exam(duration, path, shuffle) 

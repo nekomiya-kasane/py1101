@@ -1,18 +1,24 @@
 class Exam:
+
+    name: str = ''
+    duration: int = -1
+    setup_dir: str = ''
+    shuffle: bool = True
+    exam_status: bool = False
+    questions: list = []
+
     def __init__(self, duration, path, shuffle):
-        self.duration = duration
-        self.path_to_dir = path
-        self.shuffle = shuffle
-        self.exam_status = False
-        self.questions = []
         self.set_name(path)
+        self.duration = duration
+        self.setup_dir = path
+        self.shuffle = shuffle
         
     def copy_exam(self):
         """
         Returns a deep copy of the current Exam object.
         """
         
-        copied_exam = Exam(self.duration, self.path_to_dir, self.shuffle)
+        copied_exam = Exam(self.duration, self.setup_dir, self.shuffle)
         copied_exam.exam_status = self.exam_status
         copied_exam.questions = [q.copy_question() for q in self.questions]  # Assuming each question has a copy_question() method
         return copied_exam
@@ -37,13 +43,13 @@ class Exam:
         """
         Returns formatted string of exam name.
         """
-        return self.name.replace("_", " ").upper()
+        return self.name.replace("_", " ").upper() # todo:
 
     def set_exam_status(self):
         '''
         Set exam_status to True only if exam has questions.
         '''
-        if self.questions != []:
+        if self.questions:
             self.exam_status = True
         
     def set_duration(self, t):
@@ -126,5 +132,5 @@ class Exam:
 
         
     def __str__(self):
-        Pass
+        pass
 
